@@ -20,9 +20,12 @@ define("CARPETA_PRINCIPAL", "C:/xampp/htdocs/HelpMe!");
 /** Carpeta Common */
 define("CARPETA_COMMON", CARPETA_PRINCIPAL . "/recursos/common" );
 
+/** Carpeta Operaciones */
+define("CARPETA_OPERACIONES", CARPETA_PRINCIPAL . "/recursos/operaciones" );
 
 /** mensaje en respuesta (exitosa) por defecto */
 define('MENSAJE_DEFECTO_OK', "La operacion se realizo correctamente");
 
 /** mensaje en respuesta no exitosa por defecto */
 define('MENSAJE_DEFECTO_ERROR', "Ocurrio un error durante la ejecucion del servicio");
+

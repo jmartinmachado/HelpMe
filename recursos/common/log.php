@@ -54,6 +54,7 @@ function ws_debug(){
             break;
         }
         if (!empty($texto)){
+            $texto = preg_replace("/\s+/", " ", $texto);
             $_log->aniadir($texto . PHP_EOL);
         }
     }

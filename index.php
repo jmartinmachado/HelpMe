@@ -25,6 +25,13 @@ require dirname(__FILE__) . "/config.php";
 require CARPETA_COMMON . "/Servicio.php";
 require CARPETA_COMMON . "/log.php";
 
+
+/**
+ * Operaciones
+ */
+require CARPETA_OPERACIONES . "/ManejoSesion.php";
+
+
 /** 
  * Seteo Timezone
  */
@@ -41,8 +48,37 @@ $_log = new logs(dirname(__FILE__) ."/logs/ws_debug_" . date("Y-m-d") .".log",tr
 $service = new Servicio();
 
 /**
+ * Clase para Manejo de Sesion
+ */
+$manejoSesion = new ManejoSesion();
+
+/**
  * Logeo lo que le llega al web service
  */
-ws_debug($service->contenido);
+ws_debug($_SERVER);
+ws_debug("--");
+ws_debug($service->contenido_raw);
 
-ws_debug($service->retornar("Holas <3",MENSAJE_DEFECTO_OK,0));
+/**
+ * Verifico que los valores del web service sean validos
+ */
+if (!$service->valido){
+    $service->retornar(NULL, "Entrada de datos incorrectos", 2);
+}
+
+$respuesta = NULL;
+
+switch ($service->get_operacion()) {
+    case 'login':
+        $respuesta = $manejoSesion->login($service->get_parametros());
+    break;
+    default:
+        $service->retornar(NULL, "La operacion no existe", 1);
+    break;
+}
+$service->retornar($respuesta->datos, $respuesta->mensaje, $respuesta->codigo);
+
+/**
+ * Logeo la respuesta del web service
+ */
+ws_debug($service->respuesta_json);
