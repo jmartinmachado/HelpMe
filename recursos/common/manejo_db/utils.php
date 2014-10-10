@@ -13,5 +13,5 @@
  * (AAAA-MM-DD) Autor: Modificación
  */
 
-include FM_SERVICES_FOLDER . '/Common/lib/utils/excepciones.php';
-include FM_SERVICES_FOLDER . '/Common/lib/utils/miscelaneos.php';
+include CARPETA_COMMON . '/manejo_db/utils/excepciones.php';
+include CARPETA_COMMON . '/manejo_db/utils/miscelaneos.php';

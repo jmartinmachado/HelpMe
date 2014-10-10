@@ -12,6 +12,6 @@
  * @internal Audit trail
  * (AAAA-MM-DD) Autor: Modificación
  */
-include FM_SERVICES_FOLDER . '/Common/lib/snddb/exception/MySQLException.php';
-include FM_SERVICES_FOLDER . '/Common/lib/snddb/exception/MySQLDatabaseException.php';
-include FM_SERVICES_FOLDER . '/Common/lib/snddb/MysqlDB.php';
+include  CARPETA_COMMON . '/manejo_db/snddb/exception/MySQLException.php';
+include  CARPETA_COMMON . '/manejo_db/snddb/exception/MySQLDatabaseException.php';
+include  CARPETA_COMMON . '/manejo_db/snddb/MysqlDB.php';

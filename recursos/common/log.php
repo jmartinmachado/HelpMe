@@ -53,10 +53,10 @@ function ws_debug(){
                 ob_end_clean();
             break;
         }
-        if (!empty($texto)){
-            $texto = preg_replace("/\s+/", " ", $texto);
+        #if (!empty($texto)){
+            #$texto = preg_replace("/\s+/", " ", $texto);
             $_log->aniadir($texto . PHP_EOL);
-        }
+        #}
     }
     $_log->guardar();
 }
