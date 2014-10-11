@@ -11,8 +11,8 @@ CREATE PROCEDURE `hm_usuariosActualizarCoordenadas`(
  Audit Trail:
  */
 _email    VARCHAR(30),
-_longitud FLOAT,
-_latitud  FLOAT
+_longitud DOUBLE,
+_latitud  DOUBLE
 )
 BEGIN
 

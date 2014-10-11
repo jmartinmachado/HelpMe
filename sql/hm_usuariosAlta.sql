@@ -13,13 +13,12 @@ CREATE PROCEDURE `hm_usuariosAlta`(
 
 _name VARCHAR(10),
 _email VARCHAR(30),
-_password VARCHAR(10),
-_skills INT(4)
+_password VARCHAR(10)
 )
 BEGIN
 	DECLARE _idInterno INT(11);
 	
-	INSERT INTO hm_usuarios (`nombre`, `password`, `email`, `skills`) VALUES (_name, _password, _email, _skills);
+	INSERT INTO hm_usuarios (`nombre`, `password`, `email`) VALUES (_name, _password, _email);
     
 	SELECT @@identity INTO _idInterno;
     SELECT _idInterno AS _id;

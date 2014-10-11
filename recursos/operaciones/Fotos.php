@@ -1,6 +1,6 @@
-<?php 
+<?php
 /**
- * Descripción: Clase para manejar la sesion del usuario
+ * Descripción: Clase para manejar las fotos del usuario
  *
  * @package HelpMe!
  * @author  Juan Martin Machado
@@ -12,47 +12,57 @@
  * @internal Audit trail
  * (AAAA-MM-DD) Autor: Modificación
  */
-class ManejoSesion
+class Fotos
 {
     /**
-     * Descripción: Operacion para logear un usuario
+     * Descripción: Operacion para subir la foto de un usuario
      * 
      * @author Juan Martin Machado
      * 
      * @internal Fecha de creación:   2014-10-10
      * @internal Ultima modificación: 2014-10-10
+     * @internal Razón: Creacion
      * 
      * @param  stdclass $parametros 
      * @return stdclass Resultado de la operacion
      */
-    public function login($parametros){
+    public function subirFotoUsuario($parametros){
         /**
          * Genero la respuesta por defecto
          */
         $respuesta          = new stdclass();
         $respuesta->datos   = "";
         $respuesta->codigo  = -1;
-        $respuesta->mensaje = "Usuario/Password Invalidos";
-        $hm_usuariosDAO = new hm_usuariosDAO();
+        $respuesta->mensaje = "Error al tratar de subir la foto";
+        $hm_fotosDAO        = new hm_fotosDAO();
+        $hm_usuariosDAO     = new hm_usuariosDAO();
+
         try {
-            if (!controlParamentros($parametros,'["usuario","password"]')){
+            if (!controlParamentros($parametros,'["email","foto"]')){
                 $respuesta->mensaje = "Datos Invalidos";
                 $respuesta->codigo  = 4;
                 return $respuesta;
             }
 
-            $resultado = $hm_usuariosDAO->hm_usuariosComprobar($parametros["usuario"], $parametros["password"]);
- 
-            if ($resultado !== false){
-                $respuesta->datos   = $resultado;
-                $respuesta->codigo  = 0;
-                $respuesta->mensaje = MENSAJE_DEFECTO_OK;
+            $id_usuario = $hm_usuariosDAO->hm_usuariosExiste($parametros["email"]);
+
+            if ($id_usuario == false){
+                $respuesta->mensaje = "El usuario no existe";
+                $respuesta->codigo  = 5;
+                return $respuesta;
             }
 
+            if ($hm_fotosDAO->hm_fotosAlta($id_usuario, $parametros["foto"]) == false){
+                return $respuesta;
+            }
+             
+            $respuesta->mensaje = "Foto Actualizada";
+            $respuesta->codigo  = 0;
+            
         } catch (Exception $e) {
             $respuesta->mensaje = $e->getMessage();
         }
-
         return $respuesta;
     }
 }
+

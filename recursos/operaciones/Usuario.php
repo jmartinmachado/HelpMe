@@ -1,4 +1,4 @@
-<?php
+    <?php
 /**
  * Descripción: Clase para manejar la sesion del usuario
  *
@@ -14,6 +14,18 @@
  */
 class Usuario
 {
+    /**
+     * Descripción: Operacion para registrar un usuario
+     * 
+     * @author Juan Martin Machado
+     * 
+     * @internal Fecha de creación:   2014-10-10
+     * @internal Ultima modificación: 2014-10-10
+     * @internal Razón: Creacion
+     * 
+     * @param type $parametros 
+     * @return type
+     */
     public function registrarUsuario($parametros){
         /**
          * Genero la respuesta por defecto
@@ -22,9 +34,11 @@ class Usuario
         $respuesta->datos   = "";
         $respuesta->codigo  = -1;
         $respuesta->mensaje = "Error al tratar de crear usuario";
-        $hm_usuariosDAO = new hm_usuariosDAO();
+        $hm_celularDAO      = new hm_celularDAO();
+        $hm_usuariosDAO     = new hm_usuariosDAO();
+
         try {
-            if (!controlParamentros($parametros,'["name","email","password","skills"]')){
+            if (!controlParamentros($parametros,'["name","email","password","celular"]')){
                 $respuesta->mensaje = "Datos Invalidos";
                 $respuesta->codigo  = 4;
                 return $respuesta;
@@ -35,13 +49,12 @@ class Usuario
                 $respuesta->codigo  = 5;
                 return $respuesta;
             }
-            
-            $skills = "0000";
-            foreach ($parametros["skills"] as $llave => $valor) {
-                $skills[$valor-1] = 1;
+
+            $resultado = $hm_usuariosDAO->hm_usuariosAlta($parametros["name"], $parametros["email"], $parametros["password"]);
+
+            foreach ($parametros["celular"] as $valor) {
+                $hm_celularDAO->hm_celularAlta($resultado, $valor);
             }
-            
-            $resultado = $hm_usuariosDAO->hm_usuariosAlta($parametros["name"], $parametros["email"], $parametros["password"], $skills);
 
             if ($resultado !== false){
                 $respuesta->datos   = $resultado;
@@ -55,6 +68,18 @@ class Usuario
         return $respuesta;
     }
 
+    /**
+     * Descripción: Operacion para actualizar las coordenadas de un usuario
+     * 
+     * @author Juan Martin Machado
+     * 
+     * @internal Fecha de creación:   2014-10-10
+     * @internal Ultima modificación: 2014-10-10
+     * @internal Razón: Creacion
+     * 
+     * @param  stdclass $parametros 
+     * @return stdclass Resultado de la operacion
+     */
     public function actualizarCoordenadas($parametros){
         /**
          * Genero la respuesta por defecto
@@ -90,6 +115,18 @@ class Usuario
         return $respuesta;
     }
 
+    /**
+     * Descripción: Operacion para enviar una señal de ayuda 
+     * 
+     * @author Juan Martin Machado
+     * 
+     * @internal Fecha de creación:   2014-10-10
+     * @internal Ultima modificación: 2014-10-10
+     * @internal Razón: Creacion
+     * 
+     * @param  stdclass $parametros 
+     * @return stdclass Resultado de la operacion
+     */
     public function panico($parametros){
         /**
          * Genero la respuesta por defecto
@@ -121,20 +158,19 @@ class Usuario
 
             $busqueda = $hm_usuariosDAO->hm_usuariosBuscarAyuda($parametros["email"], AYUDA_DISTANCIA);
 
-
-
-            if (!empty($busqueda)){
-                foreach ($busqueda as $llave) {
-                    ws_debug($llave);
-                    $hm_notificacionesDAO->hm_notificacionesAlta($parametros["email"] ,$llave);
-                }
-                $respuesta->mensaje = "La ayuda va en camino!!!";
-                $respuesta->codigo  = 0;
-            } else {
+            if (empty($busqueda)){
                 $respuesta->mensaje = "No se pudo encontrar ayuda cerca!";
                 $respuesta->codigo  = 6;
                 return $respuesta;
             }
+            
+            foreach ($busqueda as $llave) {
+                ws_debug($llave);
+                $hm_notificacionesDAO->hm_notificacionesAlta($parametros["email"] ,$llave);
+            }
+            $respuesta->mensaje = "La ayuda va en camino!!!";
+            $respuesta->codigo  = 0;
+            
         } catch (Exception $e) {
             $respuesta->mensaje = $e->getMessage();
         }

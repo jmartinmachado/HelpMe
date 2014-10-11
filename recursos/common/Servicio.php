@@ -6,8 +6,8 @@
  * @author  Juan Martin Machado
  * @version 1.0.0
  *
- * @internal Fecha de creación:   2014-10-08
- * @internal Ultima modificación: 2014-10-08
+ * @internal Fecha de creación:   2014-10-10
+ * @internal Ultima modificación: 2014-10-10
  * 
  * @internal Audit trail
  * (AAAA-MM-DD) Autor: Modificación
@@ -61,8 +61,8 @@ class Servicio
      * Descripción: Le retorna al navegador un json valido para el web service
      * @author Machado, Juan Martín
      * 
-     * @internal Fecha de creación:   2014-10-08
-     * @internal Ultima modificación: 2014-10-08
+     * @internal Fecha de creación:   2014-10-10
+     * @internal Ultima modificación: 2014-10-10
      * @internal Razón: Creación
      * 
      * @param stdclass $datos 
@@ -96,8 +96,8 @@ class Servicio
      * Descripción: Retorna el nombre de la operacion
      * @author Machado, Juan Martín
      * 
-     * @internal Fecha de creación:   2014-10-08
-     * @internal Ultima modificación: 2014-10-08
+     * @internal Fecha de creación:   2014-10-10
+     * @internal Ultima modificación: 2014-10-10
      * @internal Razón: Creación
      * 
      * @return string resultado de la operacion
@@ -114,8 +114,8 @@ class Servicio
      * Descripción: Le retorna los parametros de la operacion
      * @author Machado, Juan Martín
      * 
-     * @internal Fecha de creación:   2014-10-08
-     * @internal Ultima modificación: 2014-10-08
+     * @internal Fecha de creación:   2014-10-10
+     * @internal Ultima modificación: 2014-10-10
      * @internal Razón: Creación
      * 
      * @return string resultado de la operacion

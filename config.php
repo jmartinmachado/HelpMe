@@ -6,8 +6,8 @@
  * @author  Juan Martin Machado
  * @version 1.0.0
  *
- * @internal Fecha de creación:   2014-10-08
- * @internal Ultima modificación: 2014-10-08
+ * @internal Fecha de creación:   2014-10-10
+ * @internal Ultima modificación: 2014-10-10
  * 
  * @internal Audit trail
  * (AAAA-MM-DD) Autor: Modificación
@@ -34,14 +34,17 @@ define('MENSAJE_DEFECTO_OK', "La operacion se realizo correctamente");
 define('MENSAJE_DEFECTO_ERROR', "Ocurrio un error durante la ejecucion del servicio");
 
 /** Distancia de la ayuda mas cercana en metros*/
-define('AYUDA_DISTANCIA', 2000);
+define('AYUDA_DISTANCIA', 200000000);
 
 /**
  * Configuracion de la Base de datos
  */
+
+/** Datos de la conexion */
 define("DB_HOST","localhost");
 define("DB_USER","root");
 define("DB_PASS","");
 define("DB_NAME","helpme");
 
+/** Set de Caracteres */
 define('API_SET_CHARACTER',"SET NAMES 'utf8'");

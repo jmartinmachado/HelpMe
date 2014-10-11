@@ -6,8 +6,8 @@
  * @author  Juan Martin Machado
  * @version 1.0.0
  *
- * @internal Fecha de creación:   2014-10-08
- * @internal Ultima modificación: 2014-10-08
+ * @internal Fecha de creación:   2014-10-10
+ * @internal Ultima modificación: 2014-10-10
  * 
  * @internal Audit trail
  * (AAAA-MM-DD) Autor: Modificación
@@ -39,12 +39,15 @@ require_once CARPETA_COMMON . '/manejo_db/CMPDB.php';
 require CARPETA_OPERACIONES . "/Notificaciones.php";
 require CARPETA_OPERACIONES . "/ManejoSesion.php";
 require CARPETA_OPERACIONES . "/Usuario.php";
+require CARPETA_OPERACIONES . "/Fotos.php";
 
 
 /**
  * DAO's
  */
 require CARPETA_DAO . "/AbstractDAO.php";
+require CARPETA_DAO . "/hm_fotosDAO.php";
+require CARPETA_DAO . "/hm_celularDAO.php";
 require CARPETA_DAO . "/hm_usuariosDAO.php";
 require CARPETA_DAO . "/hm_notificacionesDAO.php";
 
@@ -85,6 +88,11 @@ $usuarios = new Usuario();
 $notificaciones = new Notificaciones();
 
 /**
+ * Clase para el Manejo de las fotos
+ */
+$fotos = new Fotos();
+
+/**
  * Logeo lo que le llega al web service
  */
 ws_debug($service->contenido_raw);
@@ -108,6 +116,9 @@ switch ($service->get_operacion()) {
     break;
     case 'registrar_usuario':
         $respuesta = $usuarios->registrarUsuario($service->get_parametros());
+    break;
+    case 'subir_foto':
+        $respuesta = $fotos->subirFotoUsuario($service->get_parametros());
     break;
     case 'actualizar_coordenadas':
         $respuesta = $usuarios->actualizarCoordenadas($service->get_parametros());

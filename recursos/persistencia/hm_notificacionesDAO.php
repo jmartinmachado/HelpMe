@@ -6,8 +6,8 @@
  * @author  Juan Martin Machado
  * @version 1.0.0
  *
- * @internal Fecha de creación:   2014-08-26
- * @internal Ultima modificación: 2014-08-26
+ * @internal Fecha de creación:   2014-10-10
+ * @internal Ultima modificación: 2014-10-10
  * 
  * @internal Audit trail
  * (AAAA-MM-DD) Autor: Modificación
@@ -15,6 +15,19 @@
 
 class hm_notificacionesDAO extends AbstractDAO{
 
+    /**
+     * Descripción: Genera una nueva notificacion para un usuario
+     * 
+     * @author Juan Martin Machado
+     * 
+     * @internal Fecha de creación:   2014-10-10
+     * @internal Ultima modificación: 2014-10-10
+     * @internal Razón: Creacion
+     *
+     * @param  string $email_origen  Origen de la notificacion
+     * @param  string $email_destino Destino de la notificacion
+     * @return int    Resultado de la Operacion 
+     */
     public function hm_notificacionesAlta($email_origen, $email_destino){
         $respuesta = false;
         $db        = new CMPDB();
@@ -32,6 +45,18 @@ class hm_notificacionesDAO extends AbstractDAO{
         return $respuesta;
     }
 
+    /**
+     * Descripción: Obtiene las notificaiones del usuario
+     * 
+     * @author Juan Martin Machado
+     * 
+     * @internal Fecha de creación:   2014-10-10
+     * @internal Ultima modificación: 2014-10-10
+     * @internal Razón: Creacion
+     * 
+     * @param  string $email email del usario a notificar
+     * @return array  Resultado de la operacion
+     */
     public function hm_notificacionesLeer($email){
         $respuesta = false;
         $db        = new CMPDB();
@@ -49,6 +74,18 @@ class hm_notificacionesDAO extends AbstractDAO{
         return $respuesta;
     }
 
+    /**
+     * Descripción: Actualiza el estado de las notificaciones a leida
+     * 
+     * @author Juan Martin Machado
+     * 
+     * @internal Fecha de creación:   2014-10-10
+     * @internal Ultima modificación: 2014-10-10
+     * @internal Razón: Creacion
+     * 
+     * @param  int $id Id de la notificacion
+     * @return int Resultado de la operacion 
+     */
     public function hm_notificacionesActualizar($id){
         $respuesta = true;
         $db        = new CMPDB();
