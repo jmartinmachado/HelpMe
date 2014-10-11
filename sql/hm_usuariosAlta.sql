@@ -11,7 +11,7 @@ CREATE PROCEDURE `hm_usuariosAlta`(
  Audit Trail: 
  */
 
-_name VARCHAR(10),
+_name VARCHAR(30),
 _email VARCHAR(30),
 _password VARCHAR(10)
 )

@@ -11,8 +11,8 @@ CREATE PROCEDURE `hm_usuariosComprobar`(
  Audit Trail: 
  */
 
-_email VARCHAR(10),
-_password VARCHAR(10)
+_email VARCHAR(30),
+_password VARCHAR(30)
 )
 BEGIN
 
